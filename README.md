@@ -4,6 +4,10 @@ ArduHDLC is a *Simple Arduino HDLC library*. It can be used over any interface l
 Library only has two functions, validate incoming HDLC frame and wrap data in HDLC packet.
 The HDLC frame structure is up to the user to define and decide.
 
+**NOTICE!** *ATM this library only constructs the HDLC frame wrapping the payload and CRC,
+and does not implement the full HDLC protocol itself. So this library does not work out of the box with*
+https://github.com/SkypLabs/python-hdlc-controller
+
 ## Minimum requirements
 To use the library, user must pass all incoming data to charReceiver() function, and define two functions:
  1. Function to send HDLC frame out, one byte at a time.
@@ -14,7 +18,7 @@ When HDLC frame is being built around user data (say, "ABCD"), user defined func
 HDLC frame containing "ABCD":
 
 ```cpp
-		packet	"~ABCDÍÒ~"	char
+		packet	"~ABCDï¿½ï¿½~"	char
 			[0]	126 '~'	char
 			[1]	65 'A'	char
 			[2]	66 'B'	char
